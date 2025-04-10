@@ -19,7 +19,7 @@ This was tested on Ubuntu 22. Your mileage may vary.
 
 #### redirect with `dnsmasq`
 
-_NB: You might not actually need this, `systemd-resolver` might already be doing
+_NB: You might not actually need this, `systemd-resolved` might already be doing
 the redirecting! See [hacker news](https://news.ycombinator.com/item?id=43644434)_.
 
 To get `dnsmasq` to redirect all subdomains (*.localhost) to 127.0.0.1, install
@@ -31,9 +31,9 @@ echo 'address=/localhost/127.0.0.1' | sudo tee -a /etc/dnsmasq.conf
 sudo systemctl restart dnsmasq
 ```
 
-NB: we use port 5353 to avoid conflicts with the `systemd-resolver`
+NB: we use port 5353 to avoid conflicts with the `systemd-resolved`
 
-Next, to further avoid conflicts with `systemd-resolver` add `nameserver
+Next, to further avoid conflicts with `systemd-resolved` add `nameserver
 127.0.0.1` to the top of `/etc/resolv.conf` so that `dnsmasq` becomes the
 primary DNS resolver.
 
@@ -42,7 +42,7 @@ primary DNS resolver.
 Then, we use `caddy` to direct subdomains to particular ports.
 
 You can do this by writing a Caddyfile by hand. I've written a little bash
-script with Claude's help to do this for me. Tou can add the bash script
+script with Claude's help to do this for me. You can add the bash script
 `localhost` to your `PATH`. In my case, I added the following line to my
 `.zshrc`.
 
