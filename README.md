@@ -1,11 +1,12 @@
 ### localhost subdomains
 
-direct continuation of Charles' process:
+Direct continuation of Charles' process:
 https://inclouds.space/localhost-domains
 
 #### setup `dnsmasq`
 
-Use `dnsmasq` so all subdomains (*.localhost) get redirected to 127.0.01.
+We'll use `dnsmasq` so all subdomains (*.localhost) get redirected to 127.0.01.
+Install it (via brew or apt) and then configure it as follows:
 
 ```
 echo 'port=5353' | sudo tee -a /etc/dnsmasq.conf
@@ -13,8 +14,9 @@ echo 'address=/localhost/127.0.0.1' | sudo tee -a /etc/dnsmasq.conf
 sudo systemctl restart dnsmasq
 ```
 
-Add `nameserver 127.0.0.1` to the top of `/etc/resolv.conf` so that `dnsmasq`
-becomes the primary DNS resolver.
+Next, to further avoid conflicts with `systemd-resolver` add `nameserver
+127.0.0.1` to the top of `/etc/resolv.conf` so that `dnsmasq` becomes the
+primary DNS resolver.
 
 #### setup caddy and manage your Caddyfile with `localhost`
 

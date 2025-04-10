@@ -6,22 +6,22 @@ CADDYFILE="$SCRIPT_DIR/Caddyfile"
 add_subdomain() {
     local subdomain=$1
     local port=$2
-    
+
     cat >> $CADDYFILE << EOF
 
 $subdomain.localhost {
-	reverse_proxy localhost:$port
-	tls internal
-	encode gzip zstd
+    reverse_proxy localhost:$port
+    tls internal
+    encode gzip zstd
 }
-EOF
 
+EOF
     echo "Added configuration for $subdomain.localhost pointing to localhost:$port"
 }
 
 remove_by_name() {
     local subdomain=$1
-    
+
     sed -i "/^$subdomain\.localhost {/,/^}/d" $CADDYFILE
     echo "Removed configuration for $subdomain.localhost"
 }
@@ -72,9 +72,13 @@ case "$1" in
         fi
         reload_caddy
         ;;
+    list)
+        cat $CADDYFILE
+        ;;
     *)
         echo "Usage: $(basename $0) add <subdomain> <port>"
         echo "       $(basename $0) remove <subdomain or port>"
+        echo "       $(basename $0) list"
         exit 1
         ;;
 esac
