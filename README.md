@@ -1,18 +1,34 @@
 ### localhost subdomains
 
-Direct continuation of Charles' process:
+Map subdomains of localhost to ports.
+
+```
+  hello.localhost → localhost:1234
+     db.localhost → localhost:5432
+printer.localhost → localhost:9100
+```
+
+This is a direct continuation of Charles' process:
 https://inclouds.space/localhost-domains
+
+For this to work, we'll use two tools:
+1. `dnsmasq` to redirect `*.localhost` to `127.0.0.1`
+2. a `caddy` server on `127.0.0.1` that reverse proxies to the right port
+
+This was tested on Ubuntu 22. Your mileage may vary.
 
 #### setup `dnsmasq`
 
-We'll use `dnsmasq` so all subdomains (*.localhost) get redirected to 127.0.01.
-Install it (via brew or apt) and then configure it as follows:
+To get `dnsmasq` to redirect all subdomains (*.localhost) to 127.0.0.1, install
+it (via brew or apt) and then configure it as follows:
 
 ```
 echo 'port=5353' | sudo tee -a /etc/dnsmasq.conf
 echo 'address=/localhost/127.0.0.1' | sudo tee -a /etc/dnsmasq.conf
 sudo systemctl restart dnsmasq
 ```
+
+NB: we use port 5353 to avoid conflicts with the `systemd-resolver`
 
 Next, to further avoid conflicts with `systemd-resolver` add `nameserver
 127.0.0.1` to the top of `/etc/resolv.conf` so that `dnsmasq` becomes the
@@ -23,21 +39,26 @@ primary DNS resolver.
 Then, we use `caddy` to direct subdomains to particular ports.
 
 You can do this by hand, but I've written a little bash script with Claude's
-help to this for me. Tou can add the bash script `localhost` to our `PATH`. In
-my case, I added the following line to my `.zshrc`.
+help to do this for me. Tou can add the bash script `localhost` to your `PATH`.
+In my case, I added the following line to my `.zshrc`.
 
 ```
 export PATH="$PATH:$HOME/dev/localhost"
 ```
 
-Then you can, e.g. `localhost add hello 8000` or `localhost remove`.
+Now you can `localhost add hello 8000` or `localhost remove`.
 
 #### testing it out
 
+Run a local server!
 ```
-localhost add hello 1234
 echo 'hello.localhost!' > index.html
 python3 -m http.server 1234
+```
+
+Name the port!
+```
+localhost add hello 1234
 ```
 
 Now open `hello.localhost` in your browser!
