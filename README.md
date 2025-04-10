@@ -20,7 +20,7 @@ This was tested on Ubuntu 22. Your mileage may vary.
 #### redirect with `dnsmasq`
 
 _NB: You might not actually need this, `systemd-resolver` might already be doing
-the redirecting! See: https://news.ycombinator.com/item?id=43644434_
+the redirecting! See [hacker news](https://news.ycombinator.com/item?id=43644434)_.
 
 To get `dnsmasq` to redirect all subdomains (*.localhost) to 127.0.0.1, install
 it (via brew or apt) and then configure it as follows:
